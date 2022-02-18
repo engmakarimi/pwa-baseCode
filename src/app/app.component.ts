@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getGeo();
     this.appVersion = environment.appVersion;
 
     //#region update application
@@ -107,6 +108,27 @@ export class AppComponent implements OnInit {
     this.isInstall = isInstalled();
   }
 
+  //#region geoLocation
+  getGeo() {
+    console.log('getGeo')
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log('position')
+        console.log(position)
+        //latitude =position.coords.latitude
+        // longitude =position.coords.longitude
+
+
+      },
+      (error) => {
+        console.log('position')
+        console.log(error)
+
+      }
+    );
+  }
+  //#endregion
+
   installPWA() {
     if (this.showInstallBtn) {
       this.a2hs.showPrompt();
@@ -119,6 +141,7 @@ export class AppComponent implements OnInit {
       this.iosAgent = true;
     }
   }
+
 }
 
 //#region detect app is installed
